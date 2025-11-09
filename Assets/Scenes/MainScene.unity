@@ -298,6 +298,7 @@ GameObject:
   - component: {fileID: 96225858}
   - component: {fileID: 96225860}
   - component: {fileID: 96225859}
+  - component: {fileID: 96225861}
   m_Layer: 5
   m_Name: DayText
   m_TagString: Untagged
@@ -366,6 +367,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 96225857}
   m_CullTransparentMesh: 1
+--- !u!114 &96225861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96225857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d776a018b3cb09544baf608b3f0547ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DayUI
 --- !u!1 &148182896
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,7 +709,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &331813667
 RectTransform:
   m_ObjectHideFlags: 0
@@ -714,7 +727,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -400, y: -120}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1100, y: 1800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &331813668
@@ -1097,15 +1110,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7a062b4ed796334f9cdc348a9a24e6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
-  visitorStartPosition: {fileID: 1590638537}
-  visitorEndPosition: {fileID: 807303234}
-  thiefStartPosition: {fileID: 802877990}
-  thiefEndPosition: {fileID: 8990412}
-  timeBetweenPosition: 1
   textPanel: {fileID: 477561658}
   dialogueText: {fileID: 1709525299}
-  visitorGameObject: {fileID: 331813666}
-  visitorImagae: {fileID: 331813668}
+  visitorImage: {fileID: 331813668}
   purchaseButton: {fileID: 1987259072}
   cancelButton: {fileID: 31973268}
   canBuy: 0
@@ -1121,6 +1128,7 @@ MonoBehaviour:
     basicSprite: 
     acceptSprite: 
     rejectSprite: 
+  npcController: {fileID: 1132083517}
 --- !u!4 &567787136
 Transform:
   m_ObjectHideFlags: 0
@@ -2223,6 +2231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1132083516}
+  - component: {fileID: 1132083517}
   m_Layer: 5
   m_Name: Visitor
   m_TagString: Untagged
@@ -2246,11 +2255,28 @@ RectTransform:
   - {fileID: 282868534}
   m_Father: {fileID: 1374861303}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1132083517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132083515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cd7af84d5f6ef4cbc1891bda4f55fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NpcController
+  visitorStartPosition: {fileID: 1590638537}
+  visitorEndPosition: {fileID: 807303234}
+  thiefStartPosition: {fileID: 802877990}
+  thiefEndPosition: {fileID: 8990412}
+  timeBetweenPosition: 3
 --- !u!1 &1243940754
 GameObject:
   m_ObjectHideFlags: 0
@@ -4416,7 +4442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2117996662
 RectTransform:
   m_ObjectHideFlags: 0

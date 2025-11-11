@@ -14,6 +14,7 @@ public class DayUI : MonoBehaviour
     void OnEnable()
     {
         GameManager.OnDayChanged += UpdateText;
+        dayText.text = "1"; 
     }
 
     void OnDisable()

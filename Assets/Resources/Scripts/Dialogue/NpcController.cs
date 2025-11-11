@@ -21,8 +21,10 @@ public class NpcController : MonoBehaviour
     {
         visitorGameObject.SetActive(true);
         float elapsedTime = 0f;
-        Vector2 startPos;
-        Vector2 endPos;
+        
+        // 💡 수정: Vector2 -> Vector3
+        Vector3 startPos;
+        Vector3 endPos;
 
         if (dialogue.Customer.Contains("Bandit"))
         {
@@ -49,8 +51,10 @@ public class NpcController : MonoBehaviour
     public IEnumerator Disapear(TextData dialogue)
     {
         float elapsedTime = 0f;
-        Vector2 startPos;
-        Vector2 endPos;
+        
+        // 💡 수정: Vector2 -> Vector3
+        Vector3 startPos;
+        Vector3 endPos;
 
         if (dialogue.Customer.Contains("Bandit"))
         {

@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -67,17 +68,13 @@ public class InventoryUI : MonoBehaviour
     {
         if (slotUIPrefab != null)
         {
-            for (int i = 0; i < DataManager.Instance.ItemDataBase.Count; i++)
+            foreach (ItemData data in DataManager.Instance.ItemDictionary.Values)
             {
                 GameObject slotUI = Instantiate(slotUIPrefab, transform);
                 SlotUI slot = slotUI.GetComponent<SlotUI>();
                 if (slot != null)
                 {
-                    slot.InitSlot(i);
-                }
-                else
-                {
-                    Debug.LogError("slotUI 컴포넌트가 음서");
+                    slot.InitSlot(data);
                 }
             }
         }
@@ -113,27 +110,65 @@ public class InventoryUI : MonoBehaviour
     public void InitReceipt(ItemData receivedItemData)
     {
         this.itemData = receivedItemData;
-        if (this.itemData == null)
-        {
-            Debug.LogError("잘못된 아이템 데이터가 전달되었습니다.");
-            return;
-        }
+        if (this.itemData == null) return;
         
-        itemName.text = this.itemData.name;
-        itemDescription.text = this.itemData.description;
-        itemImage.sprite = this.itemData.iconSprite;
-        itemPrice.text = this.itemData.basePrice.ToString();
-        totalPrice.text = this.itemData.basePrice.ToString();
+        itemName.text = this.itemData.ItemName;
+        itemDescription.text = this.itemData.Decription;
+        itemImage.sprite = Resources.Load<Sprite>($"Image/Items/{itemData.ItemID}");
+        itemPrice.text = GetAdjustedBasePrice(itemData.ItemID).ToString();
+        totalPrice.text = GetAdjustedBasePrice(itemData.ItemID).ToString();
         itemAmountText.text = "x1"; 
     
-        receiptPrice = this.itemData.basePrice;
-        receiptTotalPrice = this.itemData.basePrice;
+        receiptPrice = GetAdjustedBasePrice(itemData.ItemID);
+        receiptTotalPrice = receiptPrice;
         receiptAmount = 1;
     }
+    
+    // 이벤트 적용된 기준 가격을 가져오는 헬퍼 메서드
+    public int GetAdjustedBasePrice(string itemID)
+    {
+        ItemData itemData = DataManager.Instance.GetItemData(itemID);
+        if (itemData == null) return 0;
+        
+        int basePrice = itemData.BasePrice;
+        EventData currentEvent = GameManager.Instance.CurrentEventData;
+        
+        // 이벤트가 활성화되어 있고, 아이템 유형이 일치하는 경우에만 가격 변동 적용
+        if (currentEvent != null && currentEvent.ItemType == itemData.ItemType)
+        {
+            float multiplier = 1f + (currentEvent.PriceFluctuation / 100f); 
+            // NPC에게 팔 때는 이벤트 가격이 적용됨 (BasePrice * (1 + 변동률))
+            return Mathf.RoundToInt(basePrice * multiplier); 
+        }
+        
+        return basePrice;
+    }
+
+    // NPC Buy (Player Sell) 상황을 위해 아이템을 Receipt에 자동 세팅
+    public void PrepareForTrade(string itemID, int amount)
+    {
+        ItemData requestedItemData = DataManager.Instance.GetItemData(itemID);
+        if (requestedItemData == null) return;
+
+        // 이벤트 적용된 가격을 가져옴
+        int adjustedBasePrice = GetAdjustedBasePrice(itemID);
+
+        posPanel.SetActive(true);
+        itemData = requestedItemData;
+        itemName.text = itemData.ItemName;
+        itemDescription.text = itemData.Decription;
+        itemImage.sprite = Resources.Load<Sprite>($"Image/Items/{itemData.ItemID}");
+        
+        receiptAmount = amount;
+        receiptPrice = adjustedBasePrice; 
+        UpdateReceipt();
+    }
+
 
     public void AddRecepitItem()
     {
-        if (receiptAmount + 1 <= InventoryManager.Instance.GetItemCount(itemData.id))
+        if (itemData == null) return;
+        if (receiptAmount + 1 <= InventoryManager.Instance.GetItemCount(int.Parse(itemData.ItemID)))
         {
             receiptAmount++;
             UpdateReceipt();
@@ -159,27 +194,32 @@ public class InventoryUI : MonoBehaviour
 
     public void OnClickTradeButton()
     {
-
-        if (itemData == null)
-        {
-            return;
-        }
-
-        if (!DialogueManager.Instance.canBuy)
-        {
-            return;
-        }
+        if (itemData == null) return;
         
         var dialogue = DialogueManager.Instance.dialogue;
-        if (dialogue != null && dialogue.selling)
+
+        // [NPC Buy] -> [Player Sell] 로직
+        if (dialogue != null && dialogue.Context.Contains("buy"))
         {
-            bool isSaleSuccessful = dialogue.itemId == itemData.id &&
-                                    dialogue.itemAmount == receiptAmount &&
-                                    (dialogue.itemPrice * 1.5f) > receiptTotalPrice;
+            int requiredItemID = dialogue.ItemID;
+            int requiredAmount = DialogueManager.Instance.itemAmount;
+            
+            // 이벤트 적용된 기준 가격을 가져옴
+            int adjustedBasePrice = GetAdjustedBasePrice(requiredItemID.ToString());
+            
+            bool isItemMatch = requiredItemID.ToString() == itemData.ItemID && requiredAmount == receiptAmount;
+            
+            // NPC는 이벤트 적용 가격(adjustedBasePrice)의 120%까지 받아들인다고 가정
+            float acceptedMaxPrice = adjustedBasePrice * 1.2f; 
+            bool isPriceAcceptable = acceptedMaxPrice >= receiptPrice; 
+            
+            bool hasEnoughItems = InventoryManager.Instance.GetItemCount(requiredItemID) >= receiptAmount;
+            
+            bool isSaleSuccessful = isItemMatch && isPriceAcceptable && hasEnoughItems;
 
             if (isSaleSuccessful)
             {
-                InventoryManager.Instance.RemoveItem(itemData.id, receiptAmount);
+                InventoryManager.Instance.RemoveItem(requiredItemID, receiptAmount);
                 GameManager.Instance.AddGold(receiptTotalPrice);
                 DialogueManager.Instance.OnAccept();
             }
@@ -187,6 +227,7 @@ public class InventoryUI : MonoBehaviour
             {
                 DialogueManager.Instance.OnReject();
             }
+            
             posPanel.SetActive(false);
             gameObject.SetActive(false);
         }

@@ -12,12 +12,21 @@ public class InventoryManager : MonoBehaviour
 
     void Start()
     {
-        AddItem(0, 3);
-        AddItem(1, 1);
-        AddItem(2, 1);
-        AddItem(3, 1);
-        AddItem(4, 1);
-        AddItem(5, 1);
+        // 💡 수정: DataManager에 있는 모든 아이템을 1개씩 지급
+        if (DataManager.Instance != null && DataManager.Instance.ItemDictionary != null)
+        {
+            foreach (string itemIDString in DataManager.Instance.ItemDictionary.Keys)
+            {
+                if (int.TryParse(itemIDString, out int itemID))
+                {
+                    AddItem(itemID, 1); // 모든 아이템을 1개씩 추가
+                }
+            }
+        }
+        else
+        {
+            Debug.LogError("InventoryManager: DataManager 또는 ItemDictionary를 찾을 수 없어 아이템을 지급할 수 없습니다.");
+        }
     }
     
     void Awake()
@@ -34,8 +43,10 @@ public class InventoryManager : MonoBehaviour
     
     public void AddItem(int itemID, int amount = 1)
     {
-        if (DataManager.Instance.GetItem(itemID) == null)
+        // DataManager의 GetItemData는 string을 받으므로 변환
+        if (DataManager.Instance.GetItemData(itemID.ToString()) == null)
         {
+            Debug.LogWarning($"InventoryManager: 존재하지 않는 아이템 ID({itemID})를 추가하려 했습니다.");
             return;
         }
 

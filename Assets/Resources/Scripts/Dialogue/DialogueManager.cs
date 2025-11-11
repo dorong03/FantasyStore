@@ -2,6 +2,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -17,8 +18,10 @@ public class DialogueManager : MonoBehaviour
     public bool canBuy = false;
 
     public TextData dialogue;
+    public int itemAmount; // NPC 요구 수량
     
     [SerializeField] private NpcController npcController;
+    [SerializeField] private InventoryUI inventoryUI;
 
     void Awake()
     {
@@ -31,24 +34,17 @@ public class DialogueManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (npcController == null)
+        // 버튼 리스너 연결
+        if (purchaseButton != null)
         {
-            Debug.LogError("NpcController 컴포넌트 Visitor 에 설정하기");
+            purchaseButton.onClick.RemoveAllListeners();
+            purchaseButton.onClick.AddListener(OnClickTradeOrPurchase); 
         }
         
-        if (dialogueText == null)
+        if (cancelButton != null)
         {
-            Debug.LogError("방문자 대사 채팅 말풍선 게임 인스펙터에 설정하기");
-        }
-
-        if (visitorImage == null)
-        {
-            Debug.LogError("Visitor 이미지 인스펙터에 설정하기");
-        }
-        
-        if (purchaseButton == null)
-        {
-            Debug.LogError("구매하기 버튼을 인스펙터에 설정해주세요.");
+            cancelButton.onClick.RemoveAllListeners();
+            cancelButton.onClick.AddListener(OnReject);
         }
     }
 
@@ -65,25 +61,48 @@ public class DialogueManager : MonoBehaviour
         
         dialogue = DataManager.Instance.GetTextData(dialogueID.ToString());
         
+        // --- NPC 요구 수량 1개로 고정 ---
+        itemAmount = 1; 
+
+        // 이미지 로딩
         if (Resources.Load<Sprite>($"Image/Characters/{dialogue.Customer}/Basic") != null)
         {
             visitorImage.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Image/Characters/{dialogue.Customer}/Basic");
-        }
-        else
-        {
-            Debug.Log("해당 스프라이트가 없음");
         }
 
         InitChatBubble();
         yield return StartCoroutine(npcController.Apear(dialogue));
         
         canBuy = true;
-        ChatBubble(DataManager.Instance.GetItemData(dialogue.ItemID).BuyText1);
+        
+        // NPC 기준 대사 출력 로직
+        string npcMessage = "";
+        ItemData currentItem = DataManager.Instance.GetItemData(dialogue.ItemID.ToString());
 
-        if (dialogue.selling == false)
+        if (dialogue.Context.Contains("sell")) // NPC 판매 (플레이어 구매)
         {
-            purchaseButton.gameObject.SetActive(true);
+            int rand = Random.Range(1, 4);
+            if (rand == 1) npcMessage = currentItem.SellText1;
+            else if (rand == 2) npcMessage = currentItem.SellText2;
+            else npcMessage = currentItem.SellText3;
         }
+        else // "buy" (NPC 구매, 플레이어 판매)
+        {
+            int rand = Random.Range(1, 4); 
+            if (rand == 1) npcMessage = currentItem.BuyText1;
+            else if (rand == 2) npcMessage = currentItem.BuyText2;
+            else npcMessage = currentItem.BuyText3;
+        }
+        
+        // 치환: 아이템 이름(%s), 기본 가격(%d), 수량(%a)
+        string formattedMessage = npcMessage.Replace("%s", currentItem.ItemName);
+        formattedMessage = formattedMessage.Replace("%d", currentItem.BasePrice.ToString());
+        formattedMessage = formattedMessage.Replace("%a", itemAmount.ToString());
+        
+        ChatBubble(formattedMessage);
+
+        SetChoiceButtons(dialogue.Choice);
+        purchaseButton.gameObject.SetActive(true);
     }
     
     private void ChatBubble(string msg)
@@ -100,60 +119,119 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = "";
     }
     
+    // 💡 --- 수정된 메서드 --- 💡
+    // Choice 텍스트를 버튼에 적용 (줄 바꿈 처리)
+    private void SetChoiceButtons(string choiceText)
+    {
+        string[] choices = choiceText.Split('|');
+        if (choices.Length >= 2)
+        {
+            // 💡 수정: \n (JSON에서 \\n)을 실제 줄바꿈(\n)으로 변환
+            string acceptText = choices[0].Trim().Replace("\\n", "\n");
+            string rejectText = choices[1].Trim().Replace("\\n", "\n");
+
+            // 첫 번째 텍스트: 수락/거래 버튼
+            purchaseButton.GetComponentInChildren<Text>().text = acceptText;
+            // 두 번째 텍스트: 거절/취소 버튼
+            cancelButton.GetComponentInChildren<Text>().text = rejectText;
+        }
+        else // 데이터 오류 방지용 기본 설정
+        {
+            purchaseButton.GetComponentInChildren<Text>().text = "거래"; 
+            cancelButton.GetComponentInChildren<Text>().text = "취소"; 
+        }
+    }
+
+    // NPC 기준 거래/구매 버튼 클릭 시 역할 분기
+    public void OnClickTradeOrPurchase()
+    {
+        if (dialogue == null) return; 
+        
+        if (dialogue.Context.Contains("sell"))
+        {
+            // [NPC Sell] -> [Player Buy]: 즉시 거래 로직 실행
+            StartCoroutine(AcceptSequence());
+        }
+        else if (dialogue.Context.Contains("buy"))
+        {
+            // [NPC Buy] -> [Player Sell]: InventoryUI 열고 아이템 자동 세팅
+            if (inventoryUI != null)
+            {
+                inventoryUI.gameObject.SetActive(true);
+                inventoryUI.PrepareForTrade(dialogue.ItemID.ToString(), itemAmount);
+            }
+        }
+    }
+
     private IEnumerator RejectSequence()
     {
         purchaseButton.gameObject.SetActive(false);
         cancelButton.gameObject.SetActive(false);
-        if (dialogue.rejectSpriteLoaded != null)
+        
+        if (Resources.Load<Sprite>($"Image/Characters/{dialogue.Customer}/Reject") != null)
         {
-            visitorImage.sprite = dialogue.rejectSpriteLoaded;
+            visitorImage.sprite = Resources.Load<Sprite>($"Image/Characters/{dialogue.Customer}/Reject");
         }
-        ChatBubble(dialogue.rejectDialogue);
+        ChatBubble(dialogue.RejectText);
+        
         yield return new WaitForSeconds(2f);
         InitChatBubble();
         yield return StartCoroutine(npcController.Disapear(dialogue));
+        
+        dialogue = null;
+        GameManager.Instance.OnNpcEncounterFinished();
     }
 
     private IEnumerator AcceptSequence()
     {
         purchaseButton.gameObject.SetActive(false);
         cancelButton.gameObject.SetActive(false);
-        if (!dialogue.selling)
+        
+        // [NPC Sell] -> [Player Buy] 로직
+        if (dialogue.Context.Contains("sell"))
         {
-            if (GameManager.Instance.CheckGold(dialogue.itemPrice))
+            // NPC 판매 시 플레이어는 이벤트가 적용되지 않은 BasePrice로 구매
+            int price = DataManager.Instance.GetItemData(dialogue.ItemID.ToString()).BasePrice * itemAmount;
+            
+            if (GameManager.Instance.CheckGold(price))
             {
-                GameManager.Instance.RemoveGold(dialogue.itemPrice);
-                InventoryManager.Instance.AddItem(dialogue.itemId, dialogue.itemAmount);
+                // 구매 성공
+                GameManager.Instance.RemoveGold(price);
+                InventoryManager.Instance.AddItem(dialogue.ItemID, itemAmount);
 
-                if (dialogue.acceptSpriteLoaded != null)
+                if (Resources.Load<Sprite>($"Image/Characters/{dialogue.Customer}/Accept") != null)
                 {
-                    visitorImage.sprite = dialogue.acceptSpriteLoaded;
+                    visitorImage.sprite = Resources.Load<Sprite>($"Image/Characters/{dialogue.Customer}/Accept");
                 }
-                ChatBubble(dialogue.acceptDialogue);
+                ChatBubble(dialogue.AcceptText);
             }
             else
             {
-                if (dialogue.rejectSpriteLoaded != null)
-                {
-                    visitorImage.sprite = dialogue.rejectSpriteLoaded;
-                }
-                ChatBubble(dialogue.rejectDialogue);
+                // 돈 부족으로 구매 실패
+                StartCoroutine(RejectSequence());
+                yield break; 
             }
         }
+        // [NPC Buy] -> [Player Sell] 로직 (InventoryUI에서 호출됨)
         else
         {
-            if (dialogue.acceptSpriteLoaded != null)
+            if (Resources.Load<Sprite>($"Image/Characters/{dialogue.Customer}/Accept") != null)
             {
-                visitorImage.sprite = dialogue.acceptSpriteLoaded;
+                visitorImage.sprite = Resources.Load<Sprite>($"Image/Characters/{dialogue.Customer}/Accept");
             }
-            ChatBubble(dialogue.acceptDialogue);   
+            ChatBubble(dialogue.AcceptText); 
         }
+        
+        // 성공 시 퇴장 로직
         yield return new WaitForSeconds(2f);
         InitChatBubble();
         yield return StartCoroutine(npcController.Disapear(dialogue));
-
-        dialogue = null;
-        GameManager.Instance.OnNpcEncounterFinished();
+        
+        if (dialogue != null) 
+        {
+            dialogue = null;
+            GameManager.Instance.OnNpcEncounterFinished();
+        }
     }
     
     public void OnReject()
@@ -171,5 +249,4 @@ public class DialogueManager : MonoBehaviour
             StartCoroutine(AcceptSequence());
         }
     }
-    
 }

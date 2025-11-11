@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6acc723d364d52d4a8a804c9020eba6e
+guid: f64cc060b235cdf4aab23d8f82528e17
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1694913177206695654
-    second: Key_0
+      213: 1576421982578710748
+    second: PersonCane_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -96,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Key_0
+      name: PersonCane_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 10
-        width: 468
-        height: 515
+        x: 1308
+        y: 1604
+        width: 1452
+        height: 1874
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6e6a88cfd8a858710800000000000000
-      internalID: 1694913177206695654
+      spriteID: cd898bfd07390e510800000000000000
+      internalID: 1576421982578710748
       vertices: []
       indices: 
       edges: []
@@ -138,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Key_0: 1694913177206695654
+      PersonCane_0: 1576421982578710748
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

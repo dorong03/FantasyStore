@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: 945884ed4a292cb488328ada557f127d
+guid: af67339f8ec75dc4c96e2294e2574933
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9218367429762201913
-    second: DIamond_0
+      213: -4453784588268070965
+    second: Phoenix_0
   - first:
-      213: -4316494471733223699
-    second: DIamond_1
+      213: 2774680632780850282
+    second: Phoenix_1
   - first:
-      213: -4847877776362952165
-    second: DIamond_2
+      213: -7162847911029854707
+    second: Phoenix_2
   - first:
-      213: 7803927859618437076
-    second: DIamond_3
+      213: -9044002482298871080
+    second: Phoenix_3
   - first:
-      213: -4477386215311887419
-    second: DIamond_4
+      213: -2116434511981202434
+    second: Phoenix_4
   - first:
-      213: -3885032019177556470
-    second: DIamond_5
+      213: -2516983635409943500
+    second: Phoenix_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -111,29 +111,16 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DIamond_0
+      name: Phoenix_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 997
-        width: 39
+        x: 940
+        y: 2297
+        width: 11
         height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -143,20 +130,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 939b10c16583eef70800000000000000
-      internalID: 9218367429762201913
+      spriteID: bc71c2e938af032c0800000000000000
+      internalID: -4453784588268070965
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DIamond_1
+      name: Phoenix_1
       rect:
         serializedVersion: 2
-        x: 18
-        y: 0
-        width: 1723
-        height: 1243
+        x: 970
+        y: 2319
+        width: 7
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dee5761d52bb814c0800000000000000
-      internalID: -4316494471733223699
+      spriteID: a640f0aa555a18620800000000000000
+      internalID: 2774680632780850282
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DIamond_2
+      name: Phoenix_2
       rect:
         serializedVersion: 2
-        x: 1761
-        y: 1010
-        width: 8
-        height: 16
+        x: 978
+        y: 987
+        width: 2188
+        height: 2650
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b1a2069f8d0e8bcb0800000000000000
-      internalID: -4847877776362952165
+      spriteID: d0eaaea76c3789c90800000000000000
+      internalID: -7162847911029854707
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DIamond_3
+      name: Phoenix_3
       rect:
         serializedVersion: 2
-        x: 1756
-        y: 977
-        width: 13
-        height: 19
+        x: 869
+        y: 2210
+        width: 12
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,20 +196,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4d7d4559a0f1d4c60800000000000000
-      internalID: 7803927859618437076
+      spriteID: 8d223d6d8af3d7280800000000000000
+      internalID: -9044002482298871080
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DIamond_4
+      name: Phoenix_4
       rect:
         serializedVersion: 2
-        x: 1722
-        y: 895
-        width: 47
-        height: 52
+        x: 959
+        y: 2304
+        width: 7
+        height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -231,20 +218,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5c3ba1a95f02dd1c0800000000000000
-      internalID: -4477386215311887419
+      spriteID: ef3bbf2560ae0a2e0800000000000000
+      internalID: -2116434511981202434
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DIamond_5
+      name: Phoenix_5
       rect:
         serializedVersion: 2
-        x: 1742
-        y: 947
-        width: 14
-        height: 16
+        x: 937
+        y: 2278
+        width: 10
+        height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -253,8 +240,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a0637eb56f7951ac0800000000000000
-      internalID: -3885032019177556470
+      spriteID: 4344be918b0e11dd0800000000000000
+      internalID: -2516983635409943500
       vertices: []
       indices: 
       edges: []
@@ -273,12 +260,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DIamond_0: 9218367429762201913
-      DIamond_1: -4316494471733223699
-      DIamond_2: -4847877776362952165
-      DIamond_3: 7803927859618437076
-      DIamond_4: -4477386215311887419
-      DIamond_5: -3885032019177556470
+      Phoenix_0: -4453784588268070965
+      Phoenix_1: 2774680632780850282
+      Phoenix_2: -7162847911029854707
+      Phoenix_3: -9044002482298871080
+      Phoenix_4: -2116434511981202434
+      Phoenix_5: -2516983635409943500
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -57,8 +57,9 @@
     <Compile Include="Assets\Resources\Scripts\UI\Inventory\InventoryManager.cs" />
     <Compile Include="Assets\Resources\Scripts\UI\Inventory\SlotUI.cs" />
     <Compile Include="Assets\Resources\Scripts\UI\Text\DayUI.cs" />
-    <None Include="Assets\Resources\Data\DialogueData.json" />
-    <None Include="Assets\Resources\Data\ItemData.json" />
+    <None Include="Assets\Resources\Data\Items.json" />
+    <None Include="Assets\Resources\Data\Events.json" />
+    <None Include="Assets\Resources\Data\Texts.json" />
     <Reference Include="UnityEngine">
       <HintPath>C:\UNITY_EDITOR\6000.2.7f2\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

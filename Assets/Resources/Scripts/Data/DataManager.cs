@@ -1,13 +1,12 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class DataManager : MonoBehaviour
 {
-    public static DataManager Instance;
-
-    public Dictionary<int, ItemData> ItemDataBase { get; private set; } = new Dictionary<int, ItemData>();
-    public Dictionary<int, DialogueData> DialogueDataBase { get; private set; } = new Dictionary<int, DialogueData>();
-    public Dictionary<int, EventData> EventDataBase { get; private set; } = new Dictionary<int, EventData>();
+    public static DataManager Instance { get; private set; }
+    public Dictionary<string, ItemData> ItemDictionary { get; private set; } = new Dictionary<string, ItemData>();
+    public Dictionary<string, EventData> EventDictionary { get; private set; } = new Dictionary<string, EventData>();
+    public Dictionary<string, TextData> TextDictionary { get; private set; } = new Dictionary<string, TextData>();
 
     private void Awake()
     {
@@ -15,7 +14,8 @@ public class DataManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            LoadAll();
+
+            LoadAllGameData();
         }
         else
         {
@@ -23,86 +23,88 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    private void LoadAll()
+    private void LoadAllGameData()
     {
-        LoadItems();
-        LoadDialogues();
-        LoadEvents();
+        Debug.Log("DataManager: 게임 데이터 로드를 시작합니다.");
+        
+        LoadItemData("Data/Items");
+        LoadEventData("Data/Events");
+        LoadTextData("Data/Texts");
+
+        Debug.Log($"DataManager: 로드 완료. 아이템:{ItemDictionary.Count}, 이벤트:{EventDictionary.Count}, 텍스트:{TextDictionary.Count}");
     }
 
-    private void LoadItems()
+    private void LoadItemData(string path)
     {
-        TextAsset json = Resources.Load<TextAsset>("data/items");
-        if (json == null)
-        {
-            Debug.LogWarning("data/items.json 을 찾을 수 없습니다.");
-            return;
-        }
+        TextAsset jsonTextAsset = Resources.Load<TextAsset>(path);
+        if (jsonTextAsset == null) { Debug.LogError($"DataManager Error: 경로 '{path}'에서 JSON 파일을 찾을 수 없습니다."); return; }
 
-        var wrapper = JsonUtility.FromJson<ItemDataWrapper>(json.text);
-        ItemDataBase.Clear();
-        foreach (var item in wrapper.items)
-        {
-            ItemDataBase[item.id] = item;
-        }
-    }
+        ItemList listWrapper = JsonUtility.FromJson<ItemList>(jsonTextAsset.text);
+        if (listWrapper == null || listWrapper.items == null) { Debug.LogError($"DataManager Error: '{path}' 파일의 JSON 파싱에 실패했습니다."); return; }
 
-    private void LoadDialogues()
-    {
-        TextAsset json = Resources.Load<TextAsset>("data/dialogues");
-        if (json == null)
+        ItemDictionary.Clear();
+        foreach (var item in listWrapper.items)
         {
-            Debug.LogWarning("data/dialogues.json 을 찾을 수 없습니다.");
-            return;
-        }
-
-        var wrapper = JsonUtility.FromJson<DialogueDataWrapper>(json.text);
-        DialogueDataBase.Clear();
-        foreach (var d in wrapper.dialogues)
-        {
-            // 가격이 0인데 아이템이 존재하면 아이템 기본가로 채워주기
-            if (d.itemPrice == 0 && ItemDataBase.TryGetValue(d.itemId, out var item))
+            if (!string.IsNullOrEmpty(item.ItemID) && !ItemDictionary.ContainsKey(item.ItemID))
             {
-                d.itemPrice = item.basePrice;
+                ItemDictionary.Add(item.ItemID, item);
             }
-
-            DialogueDataBase[d.id] = d;
         }
     }
 
-    private void LoadEvents()
+    private void LoadEventData(string path)
     {
-        TextAsset json = Resources.Load<TextAsset>("data/events");
-        if (json == null)
+        TextAsset jsonTextAsset = Resources.Load<TextAsset>(path);
+        if (jsonTextAsset == null) { Debug.LogError($"DataManager Error: 경로 '{path}'에서 JSON 파일을 찾을 수 없습니다."); return; }
+
+        EventList listWrapper = JsonUtility.FromJson<EventList>(jsonTextAsset.text);
+        if (listWrapper == null || listWrapper.events == null) { Debug.LogError($"DataManager Error: '{path}' 파일의 JSON 파싱에 실패했습니다."); return; }
+
+        EventDictionary.Clear();
+        foreach (var eventData in listWrapper.events)
         {
-            Debug.LogWarning("data/events.json 을 찾을 수 없습니다.");
-            return;
+            if (!string.IsNullOrEmpty(eventData.EventID) && !EventDictionary.ContainsKey(eventData.EventID))
+            {
+                EventDictionary.Add(eventData.EventID, eventData);
+            }
         }
+    }
 
-        var wrapper = JsonUtility.FromJson<EventDataWrapper>(json.text);
-        EventDataBase.Clear();
-        foreach (var e in wrapper.events)
+    private void LoadTextData(string path)
+    {
+        TextAsset jsonTextAsset = Resources.Load<TextAsset>(path);
+        if (jsonTextAsset == null) { Debug.LogError($"DataManager Error: 경로 '{path}'에서 JSON 파일을 찾을 수 없습니다."); return; }
+
+        TextList listWrapper = JsonUtility.FromJson<TextList>(jsonTextAsset.text);
+        if (listWrapper == null || listWrapper.texts == null) { Debug.LogError($"DataManager Error: '{path}' 파일의 JSON 파싱에 실패했습니다."); return; }
+
+        TextDictionary.Clear();
+        foreach (var textData in listWrapper.texts)
         {
-            EventDataBase[e.id] = e;
+            if (!string.IsNullOrEmpty(textData.TextID) && !TextDictionary.ContainsKey(textData.TextID))
+            {
+                TextDictionary.Add(textData.TextID, textData);
+            }
         }
     }
-
-    // 편의 메서드
-    public ItemData GetItem(int id)
+    
+    public ItemData GetItemData(string itemID)
     {
-        ItemDataBase.TryGetValue(id, out var item);
-        return item;
+        if (ItemDictionary.TryGetValue(itemID, out ItemData data))
+        {
+            return data;
+        }
+        Debug.LogWarning($"ItemData: ItemID '{itemID}'를 찾을 수 없습니다.");
+        return null;
     }
-
-    public DialogueData GetDialogue(int id)
+    
+    public TextData GetTextData(string textID)
     {
-        DialogueDataBase.TryGetValue(id, out var d);
-        return d;
-    }
-
-    public EventData GetEvent(int id)
-    {
-        EventDataBase.TryGetValue(id, out var e);
-        return e;
+        if (TextDictionary.TryGetValue(textID, out TextData data))
+        {
+            return data;
+        }
+        Debug.LogWarning($"TextData: TextID '{textID}'를 찾을 수 없습니다.");
+        return null;
     }
 }

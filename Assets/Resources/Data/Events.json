@@ -1,0 +1,118 @@
+{
+  "events": [
+    {
+      "EventID": "100",
+      "ItemType": "Magic",
+      "Text": "속보 입니다! 엘리오스 광맥이 붕괴되어 수정석 패굴이 전면 중단되었습니다.",
+      "PriceFluctuation": 60
+    },
+    {
+      "EventID": "101",
+      "ItemType": "Magic",
+      "Text": "긴급 속보입니다! 도박사 길드가 폐쇄되며 주사위 제작이 금지 되었습니다.",
+      "PriceFluctuation": 45
+    },
+    {
+      "EventID": "102",
+      "ItemType": "Magic",
+      "Text": "왕립 마법회에서 사용 중이던 ‘말하는 모자’ 전량이 봉인 조치되었다는 소식입니다.",
+      "PriceFluctuation": 35
+    },
+    {
+      "EventID": "103",
+      "ItemType": "Nature",
+      "Text": "속보입니다! 해안 지역에 폭풍이 몰아치며 바다 거품 열매의 숲이 모두 소실되었습니다.",
+      "PriceFluctuation": 50
+    },
+    {
+      "EventID": "104",
+      "ItemType": "Exploration",
+      "Text": "왕립 점성술원이 ‘가짜 행운의 구슬’ 대량 유통을 경고했습니다. 시장이 혼란에 빠졌습니다.",
+      "PriceFluctuation": 40
+    },
+    {
+      "EventID": "105",
+      "ItemType": "Treasure",
+      "Text": "왕국 하늘을 지배하던 불사조의 모습이 사라졌습니다. 깃털 확보가 사실상 불가능해졌습니다.",
+      "PriceFluctuation": 70
+    },
+    {
+      "EventID": "106",
+      "ItemType": "Nature",
+      "Text": "각지의 습지에서 슬라임이 급격히 번식하고 있습니다. 젤리 채집량이 급증 중입니다.",
+      "PriceFluctuation": -30
+    },
+    {
+      "EventID": "107",
+      "ItemType": "Exploration",
+      "Text": "왕립 탐사대가 고대 유적을 발견했습니다. 내부에서 다수의 지팡이 유물이 출토되었다는 보고입니다.",
+      "PriceFluctuation": -25
+    },
+    {
+      "EventID": "108",
+      "ItemType": "Treasure",
+      "Text": "연인들의 축제 ‘약속의 날’이 다가오면서 목걸이 수요가 폭발적으로 증가하고 있습니다.",
+      "PriceFluctuation": 40
+    },
+    {
+      "EventID": "109",
+      "ItemType": "Treasure",
+      "Text": "사냥꾼 조합이 대형 짐승 토벌에 성공했습니다. 시장에 송곳니가 대량으로 풀렸습니다.",
+      "PriceFluctuation": -35
+    },
+    {
+      "EventID": "110",
+      "ItemType": "Nature",
+      "Text": "달의 그림자가 사라지며 달빛잎의 생장이 멈춘 것으로 확인되었습니다.",
+      "PriceFluctuation": 55
+    },
+    {
+      "EventID": "111",
+      "ItemType": "Religion",
+      "Text": "신전의 ‘심판의 종’이 금이 갔다는 소식입니다. 새로운 종 제작을 위한 금속 수요가 급증하고 있습니다.",
+      "PriceFluctuation": 30
+    },
+    {
+      "EventID": "112",
+      "ItemType": "Magic",
+      "Text": "마나 폭풍이 잦아들며 에테르 결정체의 에너지 반응이 약화되고 있습니다.",
+      "PriceFluctuation": -30
+    },
+    {
+      "EventID": "113",
+      "ItemType": "Exploration",
+      "Text": "왕립 연구소가 ‘꿈 수집기’ 프로젝트를 중단했습니다. 부품 생산이 전면 중단될 전망입니다.",
+      "PriceFluctuation": 50
+    },
+    {
+      "EventID": "114",
+      "ItemType": "Religion",
+      "Text": "최근 왕국 전역에서 기억 소실 증상이 보고되며 오르골의 수요가 급격히 늘고 있습니다.",
+      "PriceFluctuation": 45
+    },
+    {
+      "EventID": "115",
+      "ItemType": "Religion",
+      "Text": "왕립 고고학단이 이름 없는 성배의 복제품을 대량으로 제작한 것으로 확인되었습니다.",
+      "PriceFluctuation": -40
+    },
+    {
+      "EventID": "116",
+      "ItemType": "Magic",
+      "Text": "왕립 마법회가 거울 마법 실험을 재개했습니다. 거울 관련 물품 수요가 늘고 있습니다.",
+      "PriceFluctuation": 35
+    },
+    {
+      "EventID": "117",
+      "ItemType": "Nature",
+      "Text": "드루이드 교단이 실종되었다는 보고입니다. 피리 제작이 중단된 상태입니다.",
+      "PriceFluctuation": 60
+    },
+    {
+      "EventID": "118",
+      "ItemType": "Exploration",
+      "Text": "최근 모험 열풍으로 탐험가들의 수가 급증하며, 나침반 수요가 폭발적으로 증가하고 있습니다.",
+      "PriceFluctuation": 45
+    }
+  ]
+}

@@ -17,14 +17,14 @@ public class NpcController : MonoBehaviour
         visitorGameObject.SetActive(false);
     }
 
-    public IEnumerator Apear(DialogueData dialogue)
+    public IEnumerator Apear(TextData dialogue)
     {
         visitorGameObject.SetActive(true);
         float elapsedTime = 0f;
         Vector2 startPos;
         Vector2 endPos;
 
-        if (dialogue != null && dialogue.basicSprite != null && dialogue.basicSprite.Contains("theif"))
+        if (dialogue.Customer.Contains("Bandit"))
         {
             startPos = thiefStartPosition.position;
             endPos = thiefEndPosition.position;
@@ -46,13 +46,13 @@ public class NpcController : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
     }
 
-    public IEnumerator Disapear(DialogueData dialogue)
+    public IEnumerator Disapear(TextData dialogue)
     {
         float elapsedTime = 0f;
         Vector2 startPos;
         Vector2 endPos;
 
-        if (dialogue != null && dialogue.basicSprite != null && dialogue.basicSprite.Contains("thief"))
+        if (dialogue.Customer.Contains("Bandit"))
         {
             endPos = thiefStartPosition.position;
             startPos = thiefEndPosition.position;

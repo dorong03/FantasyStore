@@ -1,0 +1,264 @@
+{
+  "texts": [
+    {
+      "TextID": "0",
+      "Customer": "Wizard",
+      "ItemID": 1001,
+      "Context": "sell",
+      "Explanation": "상인, 수정석 세 알을 500G에 팔고 싶네. 반짝임이 아직 살아있지 않나?",
+      "Choice": "반짝임이 정말 아름답네요. 사겠습니다. | 오늘은 예산이 부족하네요.",
+      "AcceptText": "좋은 안목이군. 이 빛은 오래도록 꺼지지 않을 걸세.",
+      "RejectText": "흠, 수정석은 금세 동이 날 텐데… 후회하지 말게"
+    },
+    {
+      "TextID": "1",
+      "Customer": "Wizard",
+      "ItemID": 1002,
+      "Context": "buy",
+      "Explanation": "좋은 생각이야 이 반짝임을 보고도 포기 할 순 없지.",
+      "Choice": "마침 필요했는데 잘 됐네요! | 지금은 안 사요.",
+      "AcceptText": "하하! 모험심이 있군. 신이 그대 편일 걸세.",
+      "RejectText": "신의 손끝에서 굴러온 물건인데, 두려운가 보군?"
+    },
+    {
+      "TextID": "2",
+      "Customer": "Bandit",
+      "ItemID": 1007,
+      "Context": "buy",
+      "Explanation": "오 이게 누군가의 지팡이군요 다음에도 부탁 드리죠",
+      "Choice": "도료로 써보죠. | 냄새가 심하군요, 사양하겠습니다.",
+      "AcceptText": "좋은 선택이야. 이건 꽤 쓸모 있지.",
+      "RejectText": "도적의 귀엔 바람조차 시끄럽겠지."
+    },
+    {
+      "TextID": "3",
+      "Customer": "Wizard",
+      "ItemID": 1008,
+      "Context": "sell",
+      "Explanation": "누군가의 지팡이를 3000G에 사겠습니다.",
+      "Choice": "네 지금 재고가 있습니다. | 아쉽게도 지금은 재고가 없습니다.",
+      "AcceptText": "다음에도 이런 좋은 거래 부탁하네.",
+      "RejectText": "정보원의 말이 틀린건가...."
+    },
+    {
+      "TextID": "4",
+      "Customer": "Wizard",
+      "ItemID": 1008,
+      "Context": "sell",
+      "Explanation": "누군가의 지팡이를 3000G에 사겠습니다.",
+      "Choice": "네 지금 재고가 있습니다. | 아쉽게도 지금은 재고가 없습니다.",
+      "AcceptText": "드디어 찾았다 당신이 암시장의 주인인가?",
+      "RejectText": "여기가 아니라 다른곳인가?"
+    },
+    {
+      "TextID": "5",
+      "Customer": "Villager",
+      "ItemID": 1013,
+      "Context": "buy",
+      "Explanation": null,
+      "Choice": "진정한 방향이라… 훔칠 가치가 있겠네요. | 나침반보단 내 감이 더 정확하지.",
+      "AcceptText": "향이 좋아서 방에 두어야 겠네.",
+      "RejectText": "흐음… 마법을 두려워하는 자에겐 아무 쓸모 없지."
+    },
+    {
+      "TextID": "6",
+      "Customer": "Prist",
+      "ItemID": 1012,
+      "Context": "sell",
+      "Explanation": "상인, 누군가의 지팡이를 1800G에 팔겠네. 주인은 이미 떠났지.",
+      "Choice": "진실을 울리는 종이라… 신전 복원용으로 드리죠. | 아직 울려볼 용기가 없습니다.",
+      "AcceptText": "그대의 손에서 울리는 소리는 거짓을 멀리하겠지.",
+      "RejectText": "진실을 외면한 자는 결국 자신을 속이지."
+    },
+    {
+      "TextID": "7",
+      "Customer": "Wizard",
+      "ItemID": 1015,
+      "Context": "buy",
+      "Explanation": "흐흐 화난 표정의 도적이 오면 그 자에게 이 물건을 팔도록 해",
+      "Choice": "슬픔을 잊을 수 있다면 좋겠군요. | 기억을 지운다는 건 너무 잔혹하네요.",
+      "AcceptText": "부드러운 멜로디가 마음의 상처를 덮어줄 걸세.",
+      "RejectText": "하하, 그대는 아직 잊을 준비가 안 됐군."
+    },
+    {
+      "TextID": "8",
+      "Customer": "Bandit",
+      "ItemID": 1011,
+      "Context": "sell",
+      "Explanation": "좋은 기회인데 이걸 모르다니... 나중되면 알꺼다.",
+      "Choice": "달빛잎이라… 향기로 은신 덮기에 좋겠군요. | 이런 식물엔 관심 없죠.",
+      "AcceptText": "하하, 감각이 뛰어나군. 어둠 속에서도 빛이 필요하지.",
+      "RejectText": "달빛을 거부하다니."
+    },
+    {
+      "TextID": "9",
+      "Customer": "Wizard",
+      "ItemID": 1002,
+      "Context": "buy",
+      "Explanation": "좋은 생각이야 이 반짝임을 보고도 포기 할 순 없지.",
+      "Choice": "마침 필요했는데 잘 됐네요! | 지금은 안 사요.",
+      "AcceptText": "하하! 모험심이 있군. 신이 그대 편일 걸세.",
+      "RejectText": "신의 손끝에서 굴러온 물건인데, 두려운가 보군?"
+    },
+    {
+      "TextID": "10",
+      "Customer": "Wizard",
+      "ItemID": 1009,
+      "Context": "sell",
+      "Explanation": "buy",
+      "Choice": "약속의 목걸이라… 신성한 의식에 쓰겠습니다. | 감정이 담긴 물건은 피하고 싶군요.",
+      "AcceptText": "그대의 신념에 축복이 있길 바라네.",
+      "RejectText": "감정을 외면한 마법은 결국 공허해지지."
+    },
+    {
+      "TextID": "11",
+      "Customer": "Bandit",
+      "ItemID": 1018,
+      "Context": "buy",
+      "Explanation": "buy",
+      "Choice": "드루이드의 피리라… 정령의 노래도 팔 수 있을까요? | 숲의 소리엔 관심 없습니다.",
+      "AcceptText": "정령의 노래를 훔치는 자라니, 멋진 별명이군.",
+      "RejectText": "하하, 숲은 그대를 잊지 않겠지."
+    },
+    {
+      "TextID": "12",
+      "Customer": "Wizard",
+      "ItemID": 1006,
+      "Context": "buy",
+      "Explanation": "buy",
+      "Choice": "불사조의 깃털이라니… 전설 속 물건이군요. 받겠습니다. | 위험한 물건은 제 상점에 둘 수 없습니다.",
+      "AcceptText": "그대의 용기 속에 불길이 깃들겠지.",
+      "RejectText": "불길을 거부하다니, 어둠 속에서 길을 잃지 않길."
+    },
+    {
+      "TextID": "13",
+      "Customer": "Bandit",
+      "ItemID": 1002,
+      "Context": "sell",
+      "Explanation": "sell",
+      "Choice": "운명의 주사위라… 도박엔 자신 있죠. | 운은 믿지 않습니다.",
+      "AcceptText": "운을 믿지 않는 도적이라, 그게 더 재밌는걸.",
+      "RejectText": "그대의 행운은 오늘 여기서 끝이야."
+    },
+    {
+      "TextID": "14",
+      "Customer": "Villager",
+      "ItemID": 1014,
+      "Context": "buy",
+      "Explanation": "buy",
+      "Choice": "악몽을 담는 장치라니, 제 연구에 도움이 되겠군요. | 악몽은 사양입니다.",
+      "AcceptText": "용감하군. 꿈조차 다룰 줄 아는 자가 진정한 마도사지.",
+      "RejectText": "그럼 평온한 잠만 계속 꾸도록 하게. 지루하겠지만."
+    },
+    {
+      "TextID": "15",
+      "Customer": "Bandit",
+      "ItemID": 1005,
+      "Context": "sell",
+      "Explanation": "sell",
+      "Choice": "행운의 구슬이라… 흥미롭군요. 사죠. | 행운은 노력으로 만드는 겁니다.",
+      "AcceptText": "후후, 믿지 않아도 행운은 따른다네.",
+      "RejectText": "그럼 불운이 그대를 따르겠군."
+    },
+    {
+      "TextID": "16",
+      "Customer": "Wizard",
+      "ItemID": 1012,
+      "Context": "buy",
+      "Explanation": "buy",
+      "Choice": "진실을 울리는 종이라… 실험용으로 쓰이겠군요. | 신성한 물건은 제 취향이 아닙니다.",
+      "AcceptText": "그대 손에 진실이 울릴 날이 오겠지.",
+      "RejectText": "진실을 외면하는 자는 결국 스스로를 속이지."
+    },
+    {
+      "TextID": "17",
+      "Customer": "Bandit",
+      "ItemID": 1017,
+      "Context": "buy",
+      "Explanation": "buy",
+      "Choice": "거울이라… 내 얼굴보다 내면이 더 흥미롭죠. | 거짓을 들키긴 싫군요.",
+      "AcceptText": "하하, 진짜 도적은 자신조차 속이거든.",
+      "RejectText": "그대가 무서워하는 건 거울이 아니라 양심이지."
+    },
+    {
+      "TextID": "18",
+      "Customer": "Wizard",
+      "ItemID": 1003,
+      "Context": "sell",
+      "Explanation": "sell",
+      "Choice": "말하는 모자라… 재미있군요. 받아보죠. | 밤새 떠드는 건 사양합니다.",
+      "AcceptText": "현명하군. 모자도 그대를 마음에 들어 할 걸세.",
+      "RejectText": "하하, 겁이 많군. 이 모자가 그걸 기억하겠지."
+    },
+    {
+      "TextID": "19",
+      "Customer": "Bandit",
+      "ItemID": 1013,
+      "Context": "buy",
+      "Explanation": "buy",
+      "Choice": "에테르 결정체라… 마법사들이 좋아하겠죠. 되팔이용으로 삽니다. | 위험한 물건은 피하는 게 상책이죠.",
+      "AcceptText": "거래 감각이 좋군. 진짜 가치는 아는 자에게로 가지.",
+      "RejectText": "느린 판단은 곧 몰락이라네."
+    },
+    {
+      "TextID": "20",
+      "Customer": "Wizard",
+      "ItemID": 1014,
+      "Context": "buy",
+      "Explanation": "buy",
+      "Choice": "꿈을 모은 장치라… 학문적으로 큰 의미가 있겠군요. | 악몽이 섞였다면 위험하지 않을까요?",
+      "AcceptText": "두려움은 진리를 밝히는 첫걸음이라네.",
+      "RejectText": "마법사는 공포를 두려워하지 않지. 하지만 그대는 다른가?"
+    },
+    {
+      "TextID": "21",
+      "Customer": "Prist",
+      "ItemID": 1016,
+      "Context": "buy",
+      "Explanation": "buy",
+      "Choice": "성배라… 금으로 덮여있으면 좋겠군요. | 종교 물품은 손대지 않습니다.",
+      "AcceptText": "욕심을 숨기지 않는 도적이라, 마음에 드는군.",
+      "RejectText": "하하, 도둑이 신을 두려워하나 보군."
+    },
+    {
+      "TextID": "22",
+      "Customer": "Wizard",
+      "ItemID": 1003,
+      "Context": "buy",
+      "Explanation": "buy",
+      "Choice": "말하는 모자라니… 흥미롭군요. 저 모자의 기억을 분석해봐야겠어요. | 너무 위험해 보입니다.",
+      "AcceptText": "언어를 가진 마법구는 드물지. 좋은 연구가 될 걸세.",
+      "RejectText": "두려움이 지식을 가로막는 법이지."
+    },
+    {
+      "TextID": "23",
+      "Customer": "Villager",
+      "ItemID": 1011,
+      "Context": "sell",
+      "Explanation": "sell",
+      "Choice": "달빛잎이라… 향기로 은신 덮기에 좋겠군요. | 이런 식물엔 관심 없죠.",
+      "AcceptText": "하하, 감각이 뛰어나군. 어둠 속에서도 빛이 필요하지.",
+      "RejectText": "달빛을 거부하다니, 도적답지 않군."
+    },
+    {
+      "TextID": "24",
+      "Customer": "Villager",
+      "ItemID": 1005,
+      "Context": "buy",
+      "Explanation": "buy",
+      "Choice": "행운의 구슬이라… 마법 실험 때 쓰면 흥미롭겠군요. | 미신엔 관심이 없습니다.",
+      "AcceptText": "과학으로 행운을 증명하려는 자, 그대밖에 없겠군.",
+      "RejectText": "신념 없는 연구자는 결국 길을 잃지."
+    },
+    {
+      "TextID": "25",
+      "Customer": "Bandit",
+      "ItemID": 1006,
+      "Context": "buy",
+      "Explanation": "buy",
+      "Choice": "불사조의 깃털이라… 되팔면 부자 되겠는데요? | 불길한 냄새가 나네요.",
+      "AcceptText": "욕심은 죄가 아니지. 다만 타오를 뿐이야.",
+      "RejectText": "불길을 피하려면 그대의 그림자부터 태워야지."
+    }
+  ]
+}

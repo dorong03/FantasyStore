@@ -1,64 +1,62 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
 public class ItemData
 {
-    public int id;
-    public string name;
-    public string type;
-    public string icon;
-    public int basePrice;
-    public string description;
-}
+    public string ItemID;
 
+    public string ItemName;
+    public string ItemType;
+    public int BasePrice;
+    public string Decription; 
+    
+    public string SellText1;
+    public string SellText2;
+    public string SellText3;
+    public string BuyText1;
+    public string BuyText2;
+    public string BuyText3;
+}
 [Serializable]
-public class ItemDataWrapper
+public class ItemList
 {
     public ItemData[] items;
 }
 
-[Serializable]
-public class DialogueData
-{
-    public int id;
-    public string customer;
-    public bool selling;
-    public int itemId;
-    public int itemAmount;
-    public int itemPrice;
-    public string explanation;
-    public string choice1;
-    public string choice2;
-    public string acceptDialogue;
-    public string rejectDialogue;
-
-    public string basicSprite;
-    public string acceptSprite;
-    public string rejectSprite;
-
-    // [NonSerialized] public Sprite basicSpriteLoaded;
-    // [NonSerialized] public Sprite acceptSpriteLoaded;
-    // [NonSerialized] public Sprite rejectSpriteLoaded;
-}
-
-[Serializable]
-public class DialogueDataWrapper
-{
-    public DialogueData[] dialogues;
-}
 
 [Serializable]
 public class EventData
 {
-    public int id;
-    public string type;
-    public string text;
-    public float priceChangePercent;
+    public string EventID;
+    public string ItemType;
+    public string Text;
+    public int PriceFluctuation;
 }
 
 [Serializable]
-public class EventDataWrapper
+public class EventList
 {
     public EventData[] events;
+}
+
+[Serializable]
+public class TextData
+{
+    public string TextID;
+    
+    public string Customer;
+    public int ItemID;
+    public string Context;
+    public string Explanation;
+    public string Choice;
+    public string AcceptText;
+    public string RejectText;
+}
+
+[Serializable]
+public class TextList
+{
+    public TextData[] texts;
 }

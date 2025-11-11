@@ -16,7 +16,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Button cancelButton;
     public bool canBuy = false;
 
-    public DialogueData dialogue;
+    public TextData dialogue;
     
     [SerializeField] private NpcController npcController;
 
@@ -63,18 +63,22 @@ public class DialogueManager : MonoBehaviour
         purchaseButton.gameObject.SetActive(false);
         cancelButton.gameObject.SetActive(true);
         
-        dialogue = DataManager.Instance.GetDialogue(dialogueID);
+        dialogue = DataManager.Instance.GetTextData(dialogueID.ToString());
         
-        if (dialogue.basicSpriteLoaded != null)
+        if (Resources.Load<Sprite>($"Image/Characters/{dialogue.Customer}/Basic") != null)
         {
-            visitorImage.GetComponent<Image>().sprite = dialogue.basicSpriteLoaded;
+            visitorImage.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Image/Characters/{dialogue.Customer}/Basic");
+        }
+        else
+        {
+            Debug.Log("해당 스프라이트가 없음");
         }
 
         InitChatBubble();
         yield return StartCoroutine(npcController.Apear(dialogue));
         
         canBuy = true;
-        ChatBubble(dialogue.dialogue);
+        ChatBubble(DataManager.Instance.GetItemData(dialogue.ItemID).BuyText1);
 
         if (dialogue.selling == false)
         {

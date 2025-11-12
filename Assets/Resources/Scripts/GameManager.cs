@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
 
     public static event Action<int> OnGoldChanged;
     public static event Action<int> OnDayChanged;
+
+    // ✅ 하루 전환 중복 방지용 플래그
+    private bool isDayChanging = false;
     
     void Awake()
     {
@@ -42,23 +45,21 @@ public class GameManager : MonoBehaviour
         StartDay();
     }
 
-    // GameManager.cs
-
     private void StartDay()
     {
         npcEncountersToday = 0;
+        isDayChanging = false; // 새로운 하루 시작 시 초기화
         OnDayChanged?.Invoke(day);
         
         CurrentEventData = null; 
         
-        // 💡 1. 첫 번째 날 이벤트 고정 로직 (확률 무시)
+        // 💡 1. 첫 번째 날 이벤트 고정 로직
         if (day == 1)
         {
             var eventDictionary = DataManager.Instance.EventDictionary;
             if (eventDictionary.ContainsKey("100"))
             {
                 CurrentEventData = eventDictionary["100"];
-                
                 if (eventUI != null)
                 {
                     eventUI.ActivateEvent(CurrentEventData.Text);
@@ -67,26 +68,23 @@ public class GameManager : MonoBehaviour
             }
         }
         
-        // 💡 2. 첫날이 아니거나 고정 이벤트가 없을 경우: 70% 확률 이벤트 체크
+        // 💡 2. 랜덤 이벤트 70% 확률
         if (Random.Range(0f, 1f) <= 0.7f)
         {
             var eventDictionary = DataManager.Instance.EventDictionary;
             if (eventDictionary.Count > 0)
             {
-                // 랜덤 이벤트 선택
                 List<EventData> allEvents = new List<EventData>(eventDictionary.Values);
                 CurrentEventData = allEvents[Random.Range(0, allEvents.Count)];
                 
-                // 이벤트 UI 활성화 (NPC 스폰 대기)
                 if (eventUI != null)
                 {
                     eventUI.ActivateEvent(CurrentEventData.Text);
-                    return; // NPC 스폰 코루틴을 실행하지 않고 대기
+                    return;
                 }
             }
         }
         
-        // 이벤트가 발생하지 않았거나 EventUI가 없을 경우 바로 NPC 스폰 시작
         StartCoroutine(SpawnNextNpcCoroutine());
     }
     
@@ -99,9 +97,13 @@ public class GameManager : MonoBehaviour
     {
         npcEncountersToday++;
 
+        // ✅ 하루에 지정된 NPC 수를 모두 만났을 때만 다음날로 이동
         if (npcEncountersToday >= npcsPerDay)
         {
-            StartCoroutine(GoToNextDayCoroutine());
+            if (!isDayChanging)
+            {
+                StartCoroutine(GoToNextDayCoroutine());
+            }
         }
         else
         {
@@ -140,6 +142,9 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator GoToNextDayCoroutine()
     {
+        if (isDayChanging) yield break; // ✅ 이미 하루 이동 중이면 중단
+        isDayChanging = true;
+
         yield return new WaitForSeconds(10f); 
         
         day++;

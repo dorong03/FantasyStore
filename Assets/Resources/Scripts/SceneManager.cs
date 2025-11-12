@@ -6,15 +6,7 @@ public class SceneChanger : MonoBehaviour
 {
     private void ChangeScene(string sceneName)
     {
-        try
-        {
-            SceneManager.LoadScene(sceneName);
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e);
-            throw;
-        }
+        SceneManager.LoadScene(sceneName);
     }
 
     public void OnClickTitleButton()

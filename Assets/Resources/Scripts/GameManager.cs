@@ -138,7 +138,7 @@ public class GameManager : MonoBehaviour
             }
             else if (npcEncountersToday == 1)
             {
-                DialogueManager.Instance.StartDialogueCoroutine(7);
+                DialogueManager.Instance.StartDialogueCoroutine(18);
             }
             else
             {

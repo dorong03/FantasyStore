@@ -17,6 +17,11 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Button cancelButton;
     public bool canBuy = false;
 
+    // 🛑 수정: 상태 변수 2개 추가
+    public bool isDialogueActive = false; 
+    private bool isHandlingSequence = false;
+    // 🛑
+
     public TextData dialogue;
     public int itemAmount; // NPC 요구 수량
     
@@ -55,6 +60,9 @@ public class DialogueManager : MonoBehaviour
     
     public IEnumerator playDialogueWithID(int dialogueID)
     {
+        if (isDialogueActive) yield break; // 🛑 수정: 중복 실행 방지
+        
+        isDialogueActive = true; // 🛑 수정: 대화 시작
         canBuy = false;
         purchaseButton.gameObject.SetActive(false);
         cancelButton.gameObject.SetActive(true);
@@ -119,14 +127,13 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = "";
     }
     
-    // 💡 --- 수정된 메서드 --- 💡
     // Choice 텍스트를 버튼에 적용 (줄 바꿈 처리)
     private void SetChoiceButtons(string choiceText)
     {
         string[] choices = choiceText.Split('|');
         if (choices.Length >= 2)
         {
-            // 💡 수정: \n (JSON에서 \\n)을 실제 줄바꿈(\n)으로 변환
+            // \n (JSON에서 \\n)을 실제 줄바꿈(\n)으로 변환
             string acceptText = choices[0].Trim().Replace("\\n", "\n");
             string rejectText = choices[1].Trim().Replace("\\n", "\n");
 
@@ -165,6 +172,9 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator RejectSequence()
     {
+        if (isHandlingSequence) yield break; // 🛑 수정: 중복 실행 방지
+        isHandlingSequence = true; // 🛑 수정: 종료 처리 시작
+        
         purchaseButton.gameObject.SetActive(false);
         cancelButton.gameObject.SetActive(false);
         
@@ -179,11 +189,16 @@ public class DialogueManager : MonoBehaviour
         yield return StartCoroutine(npcController.Disapear(dialogue));
         
         dialogue = null;
+        isDialogueActive = false; // 🛑 수정: 상태 해제
+        isHandlingSequence = false; // 🛑 수정: 상태 해제
         GameManager.Instance.OnNpcEncounterFinished();
     }
 
     private IEnumerator AcceptSequence()
     {
+        if (isHandlingSequence) yield break; // 🛑 수정: 중복 실행 방지
+        isHandlingSequence = true; // 🛑 수정: 종료 처리 시작
+        
         purchaseButton.gameObject.SetActive(false);
         cancelButton.gameObject.SetActive(false);
         
@@ -230,13 +245,15 @@ public class DialogueManager : MonoBehaviour
         if (dialogue != null) 
         {
             dialogue = null;
+            isDialogueActive = false; // 🛑 수정: 상태 해제
+            isHandlingSequence = false; // 🛑 수정: 상태 해제
             GameManager.Instance.OnNpcEncounterFinished();
         }
     }
     
     public void OnReject()
     {
-        if (dialogue != null)
+        if (dialogue != null && !isHandlingSequence) // 🛑 수정: 플래그 확인 추가
         {
             StartCoroutine(RejectSequence());
         }
@@ -244,7 +261,7 @@ public class DialogueManager : MonoBehaviour
     
     public void OnAccept()
     {
-        if (dialogue != null)
+        if (dialogue != null && !isHandlingSequence) // 🛑 수정: 플래그 확인 추가
         {
             StartCoroutine(AcceptSequence());
         }

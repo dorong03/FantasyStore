@@ -12,6 +12,7 @@ public class InventoryUI : MonoBehaviour
     public ItemData itemData;
     public Text itemName;
     public Text itemDescription;
+    public Text itemType;
     public Image itemImage;
     public Text itemPrice;
     public Text totalPrice;
@@ -86,7 +87,7 @@ public class InventoryUI : MonoBehaviour
         receiptAmount = 0;
         receiptPrice = 0;
         receiptTotalPrice = 0;
-        
+        itemType.text = "";
         itemName.text = "";
         itemDescription.text = "";
         itemPrice.text = "0";
@@ -116,6 +117,7 @@ public class InventoryUI : MonoBehaviour
         itemDescription.text = this.itemData.Decription;
         itemImage.sprite = Resources.Load<Sprite>($"Image/Items/{itemData.ItemID}");
         itemPrice.text = GetAdjustedBasePrice(itemData.ItemID).ToString();
+        itemType.text = $"계열 : {this.itemData.ItemType}";
         totalPrice.text = GetAdjustedBasePrice(itemData.ItemID).ToString();
         itemAmountText.text = "x1"; 
     
@@ -158,9 +160,10 @@ public class InventoryUI : MonoBehaviour
         itemName.text = itemData.ItemName;
         itemDescription.text = itemData.Decription;
         itemImage.sprite = Resources.Load<Sprite>($"Image/Items/{itemData.ItemID}");
-        
+        itemType.text = $"계열 : {this.itemData.ItemType}";
         receiptAmount = amount;
-        receiptPrice = adjustedBasePrice; 
+        receiptPrice = itemData.BasePrice;
+        //receiptPrice = adjustedBasePrice; 
         UpdateReceipt();
     }
 

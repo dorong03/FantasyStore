@@ -3,7 +3,7 @@
     {
       "ItemID": "1001",
       "ItemName": "수정석",
-      "ItemType": "Magic",
+      "ItemType": "마법",
       "BasePrice": 500,
       "Decription": "마력을 저장한 투명한 결정체.",
       "SellText1": "상인, %s을 %dG에 팔고 싶네. 반짝임이 아직 살아있지 않나?",
@@ -16,7 +16,7 @@
     {
       "ItemID": "1002",
       "ItemName": "운명의 주사위",
-      "ItemType": "Magic",
+      "ItemType": "마법",
       "BasePrice": 1200,
       "Decription": "굴릴 때마다 다른 미래를 보여준다고 전해지는 주사위.",
       "SellText1": "상인, %s를 %dG에 팔겠네. 오늘은 행운이 따라올 걸세.",
@@ -29,7 +29,7 @@
     {
       "ItemID": "1003",
       "ItemName": "말하는 모자",
-      "ItemType": "Magic",
+      "ItemType": "마법",
       "BasePrice": 1800,
       "Decription": "착용자의 마음을 읽고 대답하는 신비한 모자. 어디선가 본거 같다....",
       "SellText1": "상인, %s를 %dG에 팔겠네. 너무 수다스러워서 말이지.",
@@ -42,7 +42,7 @@
     {
       "ItemID": "1004",
       "ItemName": "바다 거품 열매",
-      "ItemType": "Nature",
+      "ItemType": "자연",
       "BasePrice": 300,
       "Decription": "바다의 거품이 굳어 만들어진 희귀 과일. 입에 넣으면 파도 소리가 들린다.",
       "SellText1": "주인장, %s를 %dG에 팔고 싶네. 해풍의 향이 진하지 않나?",
@@ -55,7 +55,7 @@
     {
       "ItemID": "1005",
       "ItemName": "행운의 구슬",
-      "ItemType": "Exploration",
+      "ItemType": "탐험",
       "BasePrice": 800,
       "Decription": "소유자에게 작은 행운을 가져다준다는 빛나는 구슬.",
       "SellText1": "그대, %s을 %dG에 팔겠네. 내 운은 이걸로 족하네.",
@@ -68,7 +68,7 @@
     {
       "ItemID": "1006",
       "ItemName": "불사조의 깃털",
-      "ItemType": "Treasure",
+      "ItemType": "보물",
       "BasePrice": 2500,
       "Decription": "죽은 자를 되살리는 불사조의 깃털. 한 번 쓰면 사라진다.",
       "SellText1": "그대, %s을 %dG에 팔겠네. 불길이 아직 따뜻하군.",
@@ -81,7 +81,7 @@
     {
       "ItemID": "1007",
       "ItemName": "슬라임 젤리",
-      "ItemType": "Nature",
+      "ItemType": "자연",
       "BasePrice": 300,
       "Decription": "점성이 뛰어난 젤리. 일부 연금술사들은 약재로 사용한다.",
       "SellText1": "상인, %s를 %dG에 팔겠네. 손끝이 아직도 끈적거리네.",
@@ -94,7 +94,7 @@
     {
       "ItemID": "1008",
       "ItemName": "누군가의 지팡이",
-      "ItemType": "Exploration",
+      "ItemType": "탐험",
       "BasePrice": 1000,
       "Decription": "이름이 지워진 오래된 마법 지팡이. 지팡이를 잡으면 어떤 주문을 외워야만 할꺼 같다.",
       "SellText1": "상인, %s를 %dG에 팔겠네. 주인은 이미 떠났지.",
@@ -107,20 +107,20 @@
     {
       "ItemID": "1009",
       "ItemName": "약속의 목걸이",
-      "ItemType": "Treasure",
+      "ItemType": "보물",
       "BasePrice": 1500,
       "Decription": "두 사람의 약속이 담긴 은빛 목걸이. 깨지면 약속도 사라진다.",
       "SellText1": "그대, %s를 %dG에 팔겠네. 약속은 이미 끝났지.",
       "SellText2": "주인장, %s를 %dG에 넘기지. 빛은 남았지만 마음은 떠났네.",
       "SellText3": "상인, %s를 %dG에 팔겠네. 그대가 대신 지켜주게.",
       "BuyText1": "벗이여, %s를 %dG에 사겠네. 선물할 이가 있네.",
-      "BuyText2": "내가, %s를 %dG에 주게. 결속의 주문에 쓰려 하네.",
+      "BuyText2": "나에게, %s를 %dG에 주게. 결속의 주문에 쓰려 하네.",
       "BuyText3": "주인장, %s를 %dG에 구하겠네. 약속은 많을수록 좋지 않나."
     },
     {
       "ItemID": "1010",
       "ItemName": "극상급 송곳니",
-      "ItemType": "Treasure",
+      "ItemType": "보물",
       "BasePrice": 600,
       "Decription": "강력한 야수의 송곳니. 무기나 부적 재료로 인기가 높다.",
       "SellText1": "상인, %s를 %dG에 팔겠네. 어제 사냥한 짐승의 것이지.",
@@ -133,7 +133,7 @@
     {
       "ItemID": "1011",
       "ItemName": "달빛잎",
-      "ItemType": "Nature",
+      "ItemType": "자연",
       "BasePrice": 500,
       "Decription": "달빛을 흡수한 잎사귀. 빛을 잃지 않는다.",
       "SellText1": "상인, %s을 %dG에 팔겠네. 달빛 아래서만 따온 것이야.",
@@ -146,20 +146,20 @@
     {
       "ItemID": "1012",
       "ItemName": "심판의 종",
-      "ItemType": "Religion",
+      "ItemType": "종교",
       "BasePrice": 2000,
       "Decription": "울리면 거짓을 꿰뚫는다는 전설의 종. 신성한 재판에 사용된다.",
       "SellText1": "벗이여, %s을 %dG에 팔겠네. 울리면 거짓이 드러나지.",
       "SellText2": "상인, %s을 %dG에 넘기지. 신성한 재판에서 쓰이던 물건이라네.",
       "SellText3": "주인장, %s을 %dG에 팔겠네. 이 소리는 영혼을 흔들지.",
       "BuyText1": "그대, %s을 %dG에 사겠네. 거짓을 감별해야 하네.",
-      "BuyText2": "내가, %s을 %dG에 주게. 예식용으로 필요하다네.",
+      "BuyText2": "나에게, %s을 %dG에 주게. 예식용으로 필요하다네.",
       "BuyText3": "상인, %s을 %dG에 구하겠네. 진실만을 울릴 종이라 들었지."
     },
     {
       "ItemID": "1013",
       "ItemName": "에테르 결정체",
-      "ItemType": "Magic",
+      "ItemType": "마법",
       "BasePrice": 1400,
       "Decription": "순수한 마력의 결정체. 마법 장치의 핵심 재료.",
       "SellText1": "주인장, %s를 %dG에 팔겠네. 마력이 응축된 결정이라네.",
@@ -172,7 +172,7 @@
     {
       "ItemID": "1014",
       "ItemName": "꿈 수집기",
-      "ItemType": "Exploration",
+      "ItemType": "탐험",
       "BasePrice": 1000,
       "Decription": "잠든 이의 꿈을 모으는 장치. 가끔 악몽도 함께 담긴다.",
       "SellText1": "그대, %s를 %dG에 팔겠네. 악몽이 섞여 있을 수도 있네.",
@@ -185,7 +185,7 @@
     {
       "ItemID": "1015",
       "ItemName": "망각의 오르골",
-      "ItemType": "Religion",
+      "ItemType": "종교",
       "BasePrice": 2000,
       "Decription": "멜로디를 들으면 슬픈 기억이 사라진다고 전해진 오르골.",
       "SellText1": "상인, %s을 %dG에 팔겠네. 멜로디가 슬픔을 잊게 하지.",
@@ -198,7 +198,7 @@
     {
       "ItemID": "1016",
       "ItemName": "이름 없는 성배",
-      "ItemType": "Religion",
+      "ItemType": "종교",
       "BasePrice": 2800,
       "Decription": "신의 축복을 받지 못한 성배. 그러나 아직 희망이 남아 있다.",
       "SellText1": "그대, %s를 %dG에 팔겠네. 신의 이름이 지워진 성배라네.",
@@ -211,7 +211,7 @@
     {
       "ItemID": "1017",
       "ItemName": "페르소나 거울",
-      "ItemType": "Magic",
+      "ItemType": "마법",
       "BasePrice": 1800,
       "Decription": "비추는 자의 내면을 드러내는 거울. 거짓을 허용하지 않는다.",
       "SellText1": "상인, %s을 %dG에 팔겠네. 비추는 건 얼굴이 아니라 마음이야.",
@@ -224,7 +224,7 @@
     {
       "ItemID": "1018",
       "ItemName": "드루이드의 피리",
-      "ItemType": "Nature",
+      "ItemType": "자연",
       "BasePrice": 1200,
       "Decription": "자연의 정령을 불러내는 목제 피리. 숲의 노래가 들린다.",
       "SellText1": "상인, %s를 %dG에 팔겠네. 숲의 노래가 깃든 피리라네.",
@@ -237,7 +237,7 @@
     {
       "ItemID": "1019",
       "ItemName": "아르카디아의 나침반",
-      "ItemType": "Exploration",
+      "ItemType": "탐험",
       "BasePrice": 2400,
       "Decription": "길을 잃은 자를 진정한 목적지로 이끈다는 신비한 나침반.",
       "SellText1": "상인, %s을 %dG에 팔겠네. 진정한 방향을 가리키는 나침반이라네.",
